@@ -165,8 +165,9 @@ function aplicarFalta(aluno) {
  *  Ao receber um aluno devidamente cadastrado em nossa lista. Você deverá adicionar uma nota ao aluno na sua lista de notas.
  *  Você deverá dar um feedback ao concluir a tarefa. Só poderá aplicar nota em aluno se o mesmo tiver matriculado em um curso.
  * @param {object} aluno
+ * @param {int} nota
  */
-function aplicarNota(aluno) {
+function aplicarNota(aluno, nota) {
   try {
     let result = verificarAlunoMatriculado(aluno.nome);
 
@@ -174,10 +175,14 @@ function aplicarNota(aluno) {
       alunoSearch => alunoSearch.cursos.length > 0
     );
 
+    if (nota < 0 || nota > 10) {
+      return console.log("A nota está fora do intervalo permitido!");
+    }
+
     if (studentRegistred) {
       alunosDaEscola.some(alunoEscola => {
         if (alunoEscola.nome == aluno.nome) {
-          alunoEscola.notas.push(Math.round(Math.random() * (10 - 0) + 0));
+          alunoEscola.notas.push(nota);
         }
       });
 
