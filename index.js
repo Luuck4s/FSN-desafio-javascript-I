@@ -245,6 +245,3 @@ function aprovarAluno(aluno) {
     console.log(error);
   }
 }
-
-matricularAluno(alunosDaEscola[3], "Teste");
-listarAlunos();
