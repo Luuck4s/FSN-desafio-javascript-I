@@ -55,12 +55,17 @@ function listarAlunos() {
   console.log("LISTA DE ALUNOS");
 
   for (const aluno of alunosDaEscola) {
-    courses = aluno.cursos.map(curso => curso.nomeDoCurso);
+    courses = aluno.cursos.map(
+      curso =>
+        `${
+          curso.nomeDoCurso
+        } [Data Matricula] ${curso.dataMatricula.getDate()}/${curso.dataMatricula.getMonth()}/${curso.dataMatricula.getFullYear()}`
+    );
 
     console.log(
-      `\nNome: ${aluno.nome} ${
-        aluno.notas.length > 0 ? `| Notas: ${aluno.notas}` : ""
-      } ${aluno.cursos.length > 0 ? `| Cursos: ${courses}` : ""} | Faltas: ${
+      `\n[Nome] ${aluno.nome} ${
+        aluno.notas.length > 0 ? `[Notas] ${aluno.notas}` : ""
+      } ${aluno.cursos.length > 0 ? `[Cursos] ${courses}` : ""} [Faltas] ${
         aluno.faltas
       }\n`
     );
@@ -240,3 +245,6 @@ function aprovarAluno(aluno) {
     console.log(error);
   }
 }
+
+matricularAluno(alunosDaEscola[3], "Teste");
+listarAlunos();
